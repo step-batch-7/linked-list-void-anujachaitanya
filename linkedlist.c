@@ -255,6 +255,7 @@ Element remove_first_occurrence(List_ptr list, Element element, Matcher matcher)
       return remove_at(list, counter);
     }
     counter++;
+    p_walk = p_walk->next;
   }
   return NULL;
 }
@@ -272,7 +273,17 @@ List_ptr remove_all_occurrences(List_ptr list, Element element, Matcher matcher)
       Element removed_element = remove_at(list, counter);
       add_to_list(removed_list, removed_element);
     }
+    p_walk = p_walk->next;
     counter++;
   }
   return removed_list;
+};
+
+Status clear_list(List_ptr list)
+{
+  while (list->first != NULL)
+  {
+    remove_from_start(list);
+  }
+  return Success;
 };
