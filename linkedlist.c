@@ -117,7 +117,7 @@ List_ptr filter(List_ptr list, Predicate predicate)
     Status filter_result = (*predicate)(p_walk->element);
     if (filter_result)
     {
-      add_to_list(list, p_walk->element);
+      add_to_list(new_list, p_walk->element);
     }
     p_walk = p_walk->next;
   }
