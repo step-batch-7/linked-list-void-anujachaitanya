@@ -242,3 +242,19 @@ Status add_unique(List_ptr list, Element element, Matcher matcher)
   }
   return Failure;
 }
+
+Element remove_first_occurrence(List_ptr list, Element element, Matcher matcher)
+{
+  int counter = 0;
+  Node_ptr p_walk = list->first;
+  while (p_walk != NULL)
+  {
+    Status matched = matcher(element, p_walk->element);
+    if (matched)
+    {
+      return remove_at(list, counter);
+    }
+    counter++;
+  }
+  return NULL;
+}
