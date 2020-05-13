@@ -235,6 +235,7 @@ Status add_unique(List_ptr list, Element element, Matcher matcher)
   while (p_walk != NULL && (!matched))
   {
     matched = matcher(element, p_walk->element);
+    p_walk = p_walk->next;
   }
   if (!matched)
   {
