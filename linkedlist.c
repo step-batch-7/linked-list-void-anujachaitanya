@@ -154,6 +154,5 @@ Element remove_from_start(List_ptr list)
   Node_ptr temp = list->first;
   list->first = list->first->next;
   list->length--;
-  free(temp);
-  return Success;
+  return temp->element;
 }
