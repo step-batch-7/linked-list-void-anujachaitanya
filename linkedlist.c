@@ -232,12 +232,8 @@ Status add_unique(List_ptr list, Element element, Matcher matcher)
 {
   Status matched = Failure;
   Node_ptr p_walk = list->first;
-  while (p_walk != NULL && (!matched))
-  {
-    matched = matcher(element, p_walk->element);
-    p_walk = p_walk->next;
-  }
-  if (!matched)
+  int position = search_element_position(element, list, matcher);
+  if (position == -1)
   {
     return add_to_list(list, element);
   }
@@ -288,3 +284,20 @@ Status clear_list(List_ptr list)
   }
   return Success;
 };
+
+int search_element_position(Element data, List_ptr list, Matcher matcher)
+{
+  Node_ptr p_walk = list->first;
+  int position = -1;
+  for (int i = 0; i < list->length; i++)
+  {
+    Status result = (*matcher)(data, p_walk->element);
+    if (result)
+    {
+      position = i;
+      break;
+    }
+    p_walk = p_walk->next;
+  }
+  return position;
+}
