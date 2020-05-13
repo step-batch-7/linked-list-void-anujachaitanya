@@ -269,12 +269,12 @@ List_ptr remove_all_occurrences(List_ptr list, Element element, Matcher matcher)
   while (p_walk != NULL)
   {
     Status matched = matcher(element, p_walk->element);
+    p_walk = p_walk->next;
     if (matched)
     {
       Element removed_element = remove_at(list, counter);
       add_to_list(removed_list, removed_element);
     }
-    p_walk = p_walk->next;
     counter++;
   }
   return removed_list;
