@@ -217,3 +217,18 @@ Element remove_at(List_ptr list, int position)
   list->length--;
   return p_walk->element;
 }
+
+Status add_unique(List_ptr list, Element element, Matcher matcher)
+{
+  Status matched = Failure;
+  Node_ptr p_walk = list->first;
+  while (p_walk != NULL && (!matched))
+  {
+    matched = matcher(element, p_walk->element);
+  }
+  if (!matched)
+  {
+    return add_to_list(list, element);
+  }
+  return Failure;
+}
