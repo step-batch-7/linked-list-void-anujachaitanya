@@ -151,6 +151,16 @@ Element remove_from_start(List_ptr list)
   {
     return NULL;
   }
+
+  if (list->length == 1)
+  {
+    Element element_to_be_free = list->first->element;
+    list->first = NULL;
+    list->last = NULL;
+    list->length = 0;
+    return element_to_be_free;
+  }
+
   Node_ptr temp = list->first;
   list->first = list->first->next;
   list->length--;
