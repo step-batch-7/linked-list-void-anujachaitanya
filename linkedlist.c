@@ -256,17 +256,11 @@ List_ptr remove_all_occurrences(List_ptr list, Element element, Matcher matcher)
 {
   int counter = 0;
   List_ptr removed_list = create_list();
-  Node_ptr p_walk = list->first;
-  while (p_walk != NULL)
+  int position = search_element_position(element, list, matcher);
+  while (position != -1)
   {
-    Status matched = matcher(element, p_walk->element);
-    p_walk = p_walk->next;
-    if (matched)
-    {
-      Element removed_element = remove_at(list, counter);
-      add_to_list(removed_list, removed_element);
-    }
-    counter++;
+    Element removed = remove_at(list, position);
+    position = search_element_position(element, list, matcher);
   }
   return removed_list;
 };
