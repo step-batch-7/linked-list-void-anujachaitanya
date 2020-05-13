@@ -40,12 +40,12 @@ typedef Element (*Reducer)(Element, Element);
 typedef void (*ElementProcessor)(Element);
 typedef Status (*Matcher)(Element, Element);
 
-List_ptr create_list(void); //done
+List_ptr create_list(void);
 
-Node_ptr create_node(Element data); //done
+Node_ptr create_node(Element data);
 
-Status add_to_list(List_ptr, Element);  //done
-Status add_to_start(List_ptr, Element); // done
+Status add_to_list(List_ptr, Element);
+Status add_to_start(List_ptr, Element);
 Status insert_at(List_ptr, Element element, int position);
 
 List_ptr reverse(List_ptr);
