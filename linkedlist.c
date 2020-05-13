@@ -258,3 +258,21 @@ Element remove_first_occurrence(List_ptr list, Element element, Matcher matcher)
   }
   return NULL;
 }
+
+List_ptr remove_all_occurrences(List_ptr list, Element element, Matcher matcher)
+{
+  int counter = 0;
+  List_ptr removed_list = create_list();
+  Node_ptr p_walk = list->first;
+  while (p_walk != NULL)
+  {
+    Status matched = matcher(element, p_walk->element);
+    if (matched)
+    {
+      Element removed_element = remove_at(list, counter);
+      add_to_list(removed_list, removed_element);
+    }
+    counter++;
+  }
+  return removed_list;
+};
