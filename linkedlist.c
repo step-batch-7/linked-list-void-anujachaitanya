@@ -244,15 +244,10 @@ Element remove_first_occurrence(List_ptr list, Element element, Matcher matcher)
 {
   int counter = 0;
   Node_ptr p_walk = list->first;
-  while (p_walk != NULL)
+  int position = search_element_position(element, list, matcher);
+  if (position > -1)
   {
-    Status matched = matcher(element, p_walk->element);
-    if (matched)
-    {
-      return remove_at(list, counter);
-    }
-    counter++;
-    p_walk = p_walk->next;
+    return remove_at(list, position);
   }
   return NULL;
 }
