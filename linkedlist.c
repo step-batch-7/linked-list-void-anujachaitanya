@@ -1,5 +1,4 @@
 #include "linkedlist.h"
-
 Node_ptr create_node(Element data)
 {
   Node_ptr new_node = malloc(sizeof(Node));
@@ -47,7 +46,6 @@ Status add_to_start(List_ptr list, Element data)
     list->first = new_node;
     new_node->next = temp;
   }
-
   list->length++;
   return Success;
 }
@@ -102,6 +100,34 @@ List_ptr map(List_ptr list, Mapper mapper)
     Element map_result = (*mapper)(p_walk->element);
     Node_ptr new_node = create_node(map_result);
     add_to_list(new_list, new_node);
+    p_walk = p_walk->next;
   }
   return new_list;
+}
+
+List_ptr filter(List_ptr list, Predicate predicate)
+{
+  List_ptr new_list = create_list();
+  Node_ptr p_walk = list->first;
+  while (p_walk != NULL)
+  {
+    Element filter_result = (*predicate)(p_walk->element);
+    if (filter_result)
+    {
+      add_to_list(new_list, p_walk->element);
+    }
+    p_walk = p_walk->next;
+  }
+  return new_list;
+}
+
+Element reduce(List_ptr list, Element init, Reducer reducer)
+{
+  Node_ptr p_walk = list->first;
+  while (p_walk != NULL)
+  {
+    init = (*reducer)(init, p_walk->element);
+    p_walk = p_walk->next;
+  }
+  return init;
 }
