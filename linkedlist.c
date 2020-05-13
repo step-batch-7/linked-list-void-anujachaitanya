@@ -276,3 +276,12 @@ List_ptr remove_all_occurrences(List_ptr list, Element element, Matcher matcher)
   }
   return removed_list;
 };
+
+Status clear_list(List_ptr list)
+{
+  while (list->first != NULL)
+  {
+    remove_from_start(list);
+  }
+  return Success;
+};
