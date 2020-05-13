@@ -254,12 +254,12 @@ Element remove_first_occurrence(List_ptr list, Element element, Matcher matcher)
 
 List_ptr remove_all_occurrences(List_ptr list, Element element, Matcher matcher)
 {
-  int counter = 0;
   List_ptr removed_list = create_list();
   int position = search_element_position(element, list, matcher);
   while (position != -1)
   {
     Element removed = remove_at(list, position);
+    add_to_list(removed_list, removed);
     position = search_element_position(element, list, matcher);
   }
   return removed_list;
