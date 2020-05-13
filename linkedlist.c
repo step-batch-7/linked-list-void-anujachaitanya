@@ -92,3 +92,16 @@ List_ptr reverse(List_ptr list)
   }
   return reverse_list;
 }
+
+List_ptr map(List_ptr list, Mapper mapper)
+{
+  List_ptr new_list = create_list();
+  Node_ptr p_walk = list->first;
+  while (p_walk != NULL)
+  {
+    Element map_result = (*mapper)(p_walk->element);
+    Node_ptr new_node = create_node(map_result);
+    add_to_list(new_list, new_node);
+  }
+  return new_list;
+}
