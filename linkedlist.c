@@ -144,3 +144,16 @@ void forEach(List_ptr list, ElementProcessor processor)
     p_walk = p_walk->next;
   }
 }
+
+Element remove_from_start(List_ptr list)
+{
+  if (list->first == NULL)
+  {
+    return NULL;
+  }
+  Node_ptr temp = list->first;
+  list->first = list->first->next;
+  list->length--;
+  free(temp);
+  return Success;
+}
