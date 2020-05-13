@@ -132,7 +132,7 @@ Element reduce(List_ptr list, Element init, Reducer reducer)
     init = reducer(init, p_walk->element);
     p_walk = p_walk->next;
   }
-  return p_walk;
+  return init;
 }
 
 void forEach(List_ptr list, ElementProcessor processor)
