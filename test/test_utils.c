@@ -21,7 +21,7 @@ void show_result(Status result, char *description)
   {
     printf("❌");
   }
-  printf("%s", description);
+  printf("%s\n", description);
 }
 
 Status assert_void_linked_list(List_ptr actual, List_ptr expected, Matcher matcher)
