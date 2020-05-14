@@ -222,17 +222,16 @@ Element remove_at(List_ptr list, int position)
   }
 
   int count = 0;
-  Node_ptr p_walk = list->first;
-  Node_ptr previous_node = list->first;
+  Node_tracker_ptr node_tracker = create_node_tracker(list->first);
   while (count < position)
   {
-    previous_node = p_walk;
-    p_walk = p_walk->next;
+    node_tracker->previous = node_tracker->current;
+    node_tracker->current = node_tracker->current->next;
     count++;
   }
-  previous_node->next = p_walk->next;
+  node_tracker->previous->next = node_tracker->current->next;
   list->length--;
-  return p_walk->element;
+  return node_tracker->current->element;
 }
 
 Status add_unique(List_ptr list, Element element, Matcher matcher)
