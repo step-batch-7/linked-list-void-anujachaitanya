@@ -10,3 +10,38 @@ List_ptr init_linked_list(Element data, int length, int data_size)
   }
   return new_list;
 }
+
+void show_result(Status result, char *description)
+{
+  if (result)
+  {
+    printf("✅");
+  }
+  else
+  {
+    printf("❌");
+  }
+  printf("%s", description);
+}
+
+Status assert_void_linked_list(List_ptr actual, List_ptr expected, Matcher matcher)
+{
+  if (actual->length != expected->length)
+  {
+    return Failure;
+  }
+  Status result = Success;
+  Node_ptr actual_p_walk = actual->first;
+  Node_ptr expected_p_walk = expected->first;
+  while (actual_p_walk != NULL)
+  {
+    result = matcher(actual_p_walk->element, expected_p_walk->element);
+    actual_p_walk = actual_p_walk->next;
+    expected_p_walk = expected_p_walk->next;
+    if (!result)
+    {
+      break;
+    }
+  }
+  return result;
+}
