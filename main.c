@@ -5,6 +5,11 @@ void displayer(Element number)
   printf("%d", *(int *)number);
 }
 
+void int_double(Element number)
+{
+  *(int *)number = *(int *)number * 2;
+}
+
 int main()
 {
   List_ptr list = create_list();
