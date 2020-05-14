@@ -7,6 +7,14 @@ Node_ptr create_node(Element data)
   return new_node;
 }
 
+Node_tracker_ptr create_node_tracker(Node_ptr initial_node)
+{
+  Node_tracker_ptr node_tracker = malloc(sizeof(Node_tracker));
+  node_tracker->current = initial_node;
+  node_tracker->previous = initial_node;
+  return node_tracker;
+};
+
 List_ptr create_list(void)
 {
   List_ptr new_list = malloc(sizeof(LinkedList));
@@ -67,18 +75,17 @@ Status insert_at(List_ptr list, Element data, int position)
     return add_to_list(list, data);
   }
 
-  Node_ptr p_walk = list->first;
-  Node_ptr previous_node = list->first;
+  Node_tracker_ptr node_tracker = create_node_tracker(list->first);
   int counter = 0;
   while (counter != position)
   {
-    previous_node = p_walk;
-    p_walk = p_walk->next;
+    node_tracker->previous = node_tracker->current;
+    node_tracker->current = node_tracker->current->next;
     counter++;
   }
   Node_ptr new_node = create_node(data);
-  previous_node->next = new_node;
-  new_node->next = p_walk;
+  node_tracker->previous->next = new_node;
+  new_node->next = node_tracker->current;
   list->length++;
   return Success;
 }

@@ -25,6 +25,14 @@ typedef struct node
 
 typedef Node *Node_ptr;
 
+typedef struct
+{
+  Node_ptr current;
+  Node_ptr previous;
+} Node_tracker;
+
+typedef Node_tracker *Node_tracker_ptr;
+
 typedef struct linklist
 {
   Node *first;
@@ -43,6 +51,7 @@ typedef Status (*Matcher)(Element, Element);
 List_ptr create_list(void);
 
 Node_ptr create_node(Element data);
+Node_tracker_ptr create_node_tracker(Node_ptr initial_state);
 
 Status add_to_list(List_ptr, Element);
 Status add_to_start(List_ptr, Element);
