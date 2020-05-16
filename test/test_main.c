@@ -158,6 +158,22 @@ void test_remove_from_start_fro_empty_list(void)
   Status result = assert_void_linked_list(actual, expected, char_equal);
   show_result(result, description);
 }
+
+void test_remove_from_start_in_the_long_list(void)
+{
+  char description[] = "Should remove element from start in the long list";
+  int expected_values[2] = {1, 2};
+  int actual_values[] = {1, 2};
+  int new_number = 5;
+  List_ptr expected = init_linked_list(expected_values, 2, 4);
+  List_ptr actual = create_list();
+  add_to_list(actual, &new_number);
+  add_to_list(actual, &actual_values[0]);
+  add_to_list(actual, &actual_values[1]);
+  Element removed = remove_from_start(actual);
+  Status result = assert_void_linked_list(expected, actual, int_equal) && assert_result(removed, &new_number, int_equal);
+  show_result(result, description);
+}
 int main(void)
 {
   test_for_add_to_list_empty_list();
@@ -171,5 +187,6 @@ int main(void)
   test_remove_from_end_for_empty_list();
   test_remove_from_in_long_list();
   test_remove_from_start_fro_empty_list();
+  test_remove_from_start_in_the_long_list();
   return 0;
 }
