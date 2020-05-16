@@ -45,3 +45,8 @@ Status assert_void_linked_list(List_ptr actual, List_ptr expected, Matcher match
   }
   return result;
 }
+
+Status assert_result(Element actual_result, Element expected_result, Matcher matcher)
+{
+  return matcher(actual_result, expected_result);
+};
