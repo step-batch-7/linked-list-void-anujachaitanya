@@ -101,7 +101,7 @@ void test_insert_at_for_invalid_position(void)
   show_result(result, description);
 }
 
-void test_insert_at_dor_last_position(void)
+void test_insert_at_for_last_position(void)
 {
   char description[] = "Should add element in the long list";
   int expected_values[3] = {1, 2, 5};
@@ -115,6 +115,7 @@ void test_insert_at_dor_last_position(void)
   Status result = assert_void_linked_list(expected, actual, int_equal);
   show_result(result, description);
 }
+
 int main(void)
 {
   test_for_add_to_list_empty_list();
@@ -124,5 +125,6 @@ int main(void)
   test_insert_at_for_empty();
   test_insert_at_in_middle_of_list();
   test_insert_at_for_invalid_position();
+  test_insert_at_for_last_position();
   return 0;
 }
