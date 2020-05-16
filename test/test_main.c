@@ -6,6 +6,11 @@ Status int_equal(Element no1, Element no2)
   return *(int *)no1 == *(int *)no2;
 }
 
+Status char_equal(Element char1, Element char2)
+{
+  return *(char *)char1 == *(char *)char2;
+}
+
 void test_for_add_to_list_empty_list(void)
 {
   char description[] = "Should add element in the empty list";
@@ -116,6 +121,17 @@ void test_insert_at_for_last_position(void)
   show_result(result, description);
 }
 
+void test_remove_from_end_for_empty_list(void)
+{
+  char description[] = "Should not remove from empty list";
+  char expected_values[0];
+  List_ptr expected = init_linked_list(expected_values, 0, 1);
+  List_ptr actual = create_list();
+  remove_from_end(actual);
+  Status result = assert_void_linked_list(actual, expected, char_equal);
+  show_result(result, description);
+}
+
 int main(void)
 {
   test_for_add_to_list_empty_list();
@@ -126,5 +142,6 @@ int main(void)
   test_insert_at_in_middle_of_list();
   test_insert_at_for_invalid_position();
   test_insert_at_for_last_position();
+  test_remove_from_end_for_empty_list();
   return 0;
 }
