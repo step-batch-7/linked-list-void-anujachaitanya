@@ -85,6 +85,7 @@ void test_insert_at_in_middle_of_list(void)
   Status result = assert_void_linked_list(expected, actual, int_equal);
   show_result(result, description);
 }
+
 void test_insert_at_for_invalid_position(void)
 {
   char description[] = "Should add element in the long list";
@@ -96,6 +97,21 @@ void test_insert_at_for_invalid_position(void)
   add_to_list(actual, &actual_values[0]);
   add_to_list(actual, &actual_values[1]);
   insert_at(actual, &new_number, 7);
+  Status result = assert_void_linked_list(expected, actual, int_equal);
+  show_result(result, description);
+}
+
+void test_insert_at_dor_last_position(void)
+{
+  char description[] = "Should add element in the long list";
+  int expected_values[3] = {1, 2, 5};
+  int actual_values[] = {1, 2};
+  int new_number = 5;
+  List_ptr expected = init_linked_list(expected_values, 3, 4);
+  List_ptr actual = create_list();
+  add_to_list(actual, &actual_values[0]);
+  add_to_list(actual, &actual_values[1]);
+  insert_at(actual, &new_number, 2);
   Status result = assert_void_linked_list(expected, actual, int_equal);
   show_result(result, description);
 }
