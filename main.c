@@ -15,9 +15,9 @@ int main()
   List_ptr list = create_list();
   int a = 1;
   int b = 2;
-  Element removed = remove_from_end(list);
+  // Element removed = remove_from_end(list);
   add_to_list(list, &a);
   add_to_list(list, &b);
-  displayer(removed);
+  forEach(list, int_double);
   return 0;
 }

@@ -58,11 +58,24 @@ void test_add_to_start_in_long_list(void)
   Status result = assert_void_linked_list(expected, actual, int_equal);
   show_result(result, description);
 }
+
+void test_insert_at_for_empty(void)
+{
+  char description[] = "Should insert the element in empty list";
+  int expected_values[1] = {3};
+  int value = 3;
+  List_ptr expected = init_linked_list(expected_values, 1, 4);
+  List_ptr actual = create_list();
+  insert_at(actual, &value, 0);
+  Status result = assert_void_linked_list(actual, expected, int_equal);
+  show_result(result, description);
+}
 int main(void)
 {
   test_for_add_to_list_empty_list();
   test_for_add_to_list_in_long_list();
   test_add_to_start_for_empty_list();
   test_add_to_start_in_long_list();
+  test_insert_at_for_empty();
   return 0;
 }
